@@ -1,13 +1,23 @@
 import express, { json } from "express";
 import cors from "cors";
 
+import { prisma } from "./database/db";
+
 const app = express();
 
 app
   .use(cors())
   .use(json())
-  .get("/", (req, res) => {
-    res.send("OK").status(200);
+  .get("/", async (req, res) => {
+    const test = await prisma.cardPage.create({
+      data: {
+        name: "Kevin",
+        linkedinURL: "https://www.linkedin.com/in/kevin-candeloni/",
+        gitHubURL: "https://github.com/kcandeloni"
+      }
+    }
+    );
+    res.send(test).status(200);
   });
 
   const port = process.env.PORT || 4000;

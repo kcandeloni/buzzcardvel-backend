@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CardPage {
+  id              Int               @id @default(autoincrement())
+  name            String            @unique @db.VarChar(255)
+  linkedinURL     String            @db.VarChar(255)
+  gitHubURL       String            @db.VarChar(255)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  MetadataPage    MetadataPage[]
+
+  @@index([name])
+}
+
+model MetadataPage {
+  id              Int               @id @default(autoincrement())
+  cardPageId      Int
+  CardPage        CardPage          @relation(fields: [cardPageId], references: [id])
+  title           String
+  description     String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
