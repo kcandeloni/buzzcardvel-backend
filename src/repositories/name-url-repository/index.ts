@@ -14,7 +14,7 @@ async function findNameURL(nameURL: string){
   });
 }
 
-async function getCardPageByURL(nameURL: string){
+async function getCardPageByNameURL(nameURL: string){
   return prisma.cardPageURL.findFirst({
     where: {
       nameURL,
@@ -37,7 +37,7 @@ export type newPageURLParams = {
 const cardPageURLRepository = {
   createPageURL,
   findNameURL,
-  getCardPageByURL,
+  getCardPageByNameURL,
 };
 
 export default cardPageURLRepository;

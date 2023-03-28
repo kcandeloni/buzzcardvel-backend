@@ -1,5 +1,5 @@
 import cardPageURLRepository from "@/repositories/name-url-repository";
-import { conflictError } from "@/utils/errors";
+import { conflictError, notFoundError } from "@/utils/errors";
 
 type newNameURL = {
   name: string;
@@ -29,13 +29,22 @@ async function createNameURL(data: newNameURL) {
     throw conflictError("failed to create nameURL");
   }
 
-  const newNameURL = await cardPageURLRepository.createPageURL({ nameURL, cardPageId});
+  const newNameURL = await cardPageURLRepository.createPageURL({nameURL, cardPageId});
 
   return newNameURL;
 }
 
+async function getCardPageByNameURL(nameURL: string){
+  const cardPage = await cardPageURLRepository.getCardPageByNameURL(nameURL);
+  if(!cardPage){
+    throw notFoundError();
+  }
+  return cardPage;
+}
+
 const nameURLService = {
   createNameURL,
+  getCardPageByNameURL,
 };
 
 export default nameURLService;
