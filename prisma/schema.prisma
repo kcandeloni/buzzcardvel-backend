@@ -12,14 +12,13 @@ datasource db {
 
 model CardPage {
   id              Int               @id @default(autoincrement())
-  name            String            @unique @db.VarChar(255)
+  name            String            @db.VarChar(255)
   linkedinURL     String            @db.VarChar(255)
   gitHubURL       String            @db.VarChar(255)
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
   MetadataPage    MetadataPage[]
-
-  @@index([name])
+  CardPageURL     CardPageURL[]
 }
 
 model MetadataPage {
@@ -30,4 +29,13 @@ model MetadataPage {
   description     String
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
+}
+
+model CardPageURL {
+  id              Int               @id @default(autoincrement())
+  nameURL         String            @unique @db.VarChar(255)
+  cardPageId      Int
+  CardPage        CardPage          @relation(fields: [cardPageId], references: [id])
+
+  @@index([nameURL])
 }
