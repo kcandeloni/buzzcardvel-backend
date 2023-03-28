@@ -11,6 +11,7 @@ export async function createCardPage(req: Request, res: Response) {
     const page = await cardPageService.createCardPage(newCardPage);
     return res.status(httpStatus.CREATED).send(page);
   } catch (error) {
+    console.log(error);
     return res.status(httpStatus.BAD_REQUEST).send(error);
   }
 }
