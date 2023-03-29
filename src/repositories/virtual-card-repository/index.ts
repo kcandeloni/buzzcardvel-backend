@@ -9,8 +9,19 @@ async function createCardPage(newCardPage: newCardPageParams): Promise<CardPage>
   });
 }
 
+async function getAllCardPages(){
+  return prisma.cardPage.findMany({
+    include: {
+      MetadataPage: true,
+      CardPageURL: true,
+    }
+  });
+}
+
+
 const cardPageRepository = {
   createCardPage,
+  getAllCardPages,
 };
 
 export default cardPageRepository;

@@ -3,7 +3,6 @@ import httpStatus from "http-status";
 
 import cardPageService from "@/services/virtual-card-service";
 import nameURLService from "@/services/name-url-service";
-import metadaPageService from "@/services/metadata-page-service";
 
 import { CardPageBody } from "@/utils/protocols";
 
@@ -31,5 +30,14 @@ export async function getCardPage(req: Request, res: Response) {
       return res.status(httpStatus.NOT_FOUND).send(error);  
     }
     return res.status(httpStatus.BAD_REQUEST).send(error);
+  }
+}
+
+export async function getAllCardPages(req: Request, res: Response) {
+  try {
+    const cardPages = await cardPageService.getAllCardPages();
+    return res.status(httpStatus.OK).send(cardPages);
+  } catch (error) {
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error);
   }
 }

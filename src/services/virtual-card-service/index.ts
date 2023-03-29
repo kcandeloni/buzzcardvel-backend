@@ -14,8 +14,15 @@ async function createCardPage(data: newCardPageParams) {
   return newNameURL;
 }
 
+async function getAllCardPages() {
+  const allCardPages = await cardPageRepository.getAllCardPages();
+  return allCardPages;
+}
+
+
 const cardPageService = {
   createCardPage,
+  getAllCardPages,
 };
 
 export default cardPageService;
