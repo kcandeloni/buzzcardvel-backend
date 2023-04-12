@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import { ObjectSchema } from "joi";
 
-import { invalidDataError } from "@/utils/errors";
+import { invalidDataError } from "../utils/errors";
 
 export function validateBody<T>(schema: ObjectSchema<T>): ValidationMiddleware {
   return validate(schema, "body");

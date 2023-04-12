@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 
-import cardPageService from "@/services/virtual-card-service";
-import nameURLService from "@/services/name-url-service";
+import cardPageService from "../services/virtual-card-service";
+import nameURLService from "../services/name-url-service";
 
-import { CardPageBody } from "@/utils/protocols";
+import { CardPageBody } from "../utils/protocols";
 
 export async function createCardPage(req: Request, res: Response) {
   const newCardPage: CardPageBody = req.body;
@@ -12,7 +12,7 @@ export async function createCardPage(req: Request, res: Response) {
     const page = await cardPageService.createCardPage(newCardPage);
     return res.status(httpStatus.CREATED).send(page);
   } catch (error) {
-    if(error.name === "ConflictError"){
+    if(error === "ConflictError"){
       return res.status(httpStatus.CONFLICT).send(error);  
     }
     return res.status(httpStatus.BAD_REQUEST).send(error);
@@ -26,7 +26,7 @@ export async function getCardPage(req: Request, res: Response) {
     const cardPage = await nameURLService.getCardPageByNameURL(name);
     return res.status(httpStatus.OK).send(cardPage);
   } catch (error) {
-    if(error.name === "NotFoundError"){
+    if(error === "NotFoundError"){
       return res.status(httpStatus.NOT_FOUND).send(error);  
     }
     return res.status(httpStatus.BAD_REQUEST).send(error);

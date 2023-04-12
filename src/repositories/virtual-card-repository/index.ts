@@ -1,4 +1,4 @@
-import { prisma } from "@/database";
+import { prisma } from "../../database";
 import { CardPage } from "@prisma/client";
 
 export type newCardPageParams = Omit<CardPage, "createdAt" | "updatedAt" | "id">;

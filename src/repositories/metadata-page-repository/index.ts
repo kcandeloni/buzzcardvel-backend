@@ -1,4 +1,4 @@
-import { prisma } from "@/database";
+import { prisma } from "../../database";
 import { MetadataPage } from "@prisma/client";
 
 type newMetadataParams = Omit<MetadataPage, "id" | "createdAt" | "updatedAt">

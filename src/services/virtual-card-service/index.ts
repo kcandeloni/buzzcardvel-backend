@@ -1,4 +1,4 @@
-import cardPageRepository, { newCardPageParams } from "@/repositories/virtual-card-repository";
+import cardPageRepository, { newCardPageParams } from "../../repositories/virtual-card-repository";
 import nameURLService from "../name-url-service";
 import metadaPageService from "../metadata-page-service";
 

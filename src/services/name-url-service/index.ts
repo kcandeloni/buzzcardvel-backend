@@ -1,5 +1,5 @@
-import cardPageURLRepository from "@/repositories/name-url-repository";
-import { conflictError, notFoundError } from "@/utils/errors";
+import cardPageURLRepository from "../../repositories/name-url-repository";
+import { conflictError, notFoundError } from "../../utils/errors";
 
 type newNameURL = {
   name: string;

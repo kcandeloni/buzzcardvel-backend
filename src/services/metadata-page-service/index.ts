@@ -1,5 +1,5 @@
-import { getMetadata } from "@/utils/metadata";
-import metadadaPageRepository from "@/repositories/metadata-page-repository";
+import { getMetadata } from "../../utils/metadata";
+import metadadaPageRepository from "../../repositories/metadata-page-repository";
 
 type metadataParams = {
   link: string;
